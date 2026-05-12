@@ -1,0 +1,98 @@
+<section class="hero" id="hero" style="padding-top: 8rem; min-height: 100vh; display: flex; align-items: center;">
+  <div class="container" style="display: grid; grid-template-columns: 1fr; gap: 4rem; align-items: center;">
+    
+    <div class="hero-content fade-in">
+      <span class="badge badge-orange">Пробный доступ — 10 ₽</span>
+      <h1>Огонь VPN — быстрый доступ к интернету без ограничений</h1>
+      <p class="subtitle" style="text-align: left; margin-left: 0; margin-bottom: 2rem;">
+        Скачайте Огонь VPN для телефона, ПК, Android, iPhone, Windows или Mac. Получите ключ доступа и подключитесь за 2 минуты — без сложных настроек, лимитов трафика и просадок скорости.
+      </p>
+      
+      <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem;">
+        <a href="https://tuvp1.ru/5Sg5nF?sub1=fireevpn" class="btn btn-primary">Попробовать за 10 ₽ →</a>
+        <a href="#tariffs" class="btn btn-outline">Смотреть тарифы</a>
+      </div>
+
+      <ul style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; color: var(--text-secondary);">
+        <li style="display: flex; align-items: center; gap: 0.5rem;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--success-color)" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          Пробный доступ на 3 дня
+        </li>
+        <li style="display: flex; align-items: center; gap: 0.5rem;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--success-color)" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          Безлимитный трафик
+        </li>
+        <li style="display: flex; align-items: center; gap: 0.5rem;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--success-color)" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          50+ стран
+        </li>
+        <li style="display: flex; align-items: center; gap: 0.5rem;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--success-color)" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          Работает на телефоне и ПК
+        </li>
+        <li style="display: flex; align-items: center; gap: 0.5rem;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--success-color)" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          WireGuard + HTTPS
+        </li>
+      </ul>
+    </div>
+
+    <div class="hero-visual fade-in delay-200" style="position: relative;">
+      <!-- Абстрактный визуал карты мира и телефона -->
+      <div class="glass-card" style="position: relative; overflow: hidden; padding: 0; aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center;">
+        <div style="position: absolute; width: 200%; height: 200%; background: radial-gradient(circle, rgba(59,130,246,0.15) 0%, transparent 50%); top: -50%; left: -50%;"></div>
+        
+        <!-- Анимация статуса -->
+        <div style="z-index: 2; text-align: center; background: rgba(0,0,0,0.6); padding: 1.5rem; border-radius: 1rem; border: 1px solid var(--glass-border);">
+          <div style="width: 60px; height: 60px; border-radius: 50%; background: var(--card-bg); margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; position: relative;">
+            <svg class="logo-icon" viewBox="0 0 24 24" style="width: 30px; height: 30px;">
+              <path d="M12 2C8.9 7.3 6 10.3 6 14.3C6 17.6 8.7 20.3 12 20.3C15.3 20.3 18 17.6 18 14.3C18 10.3 15.1 7.3 12 2ZM12 18C9.8 18 8 16.2 8 14C8 11.2 10.2 9.2 12 5.9C13.8 9.2 16 11.2 16 14C16 16.2 14.2 18 12 18Z"/>
+            </svg>
+            <!-- Пульсирующее кольцо -->
+            <div id="heroPulse" style="position: absolute; width: 100%; height: 100%; border: 2px solid var(--accent-orange); border-radius: 50%; animation: pulse 2s infinite;"></div>
+          </div>
+          <div id="heroStatus" style="font-weight: 600; font-size: 1.1rem; color: white;">Получение ключа...</div>
+          <div style="font-size: 0.875rem; color: var(--success-color); margin-top: 0.5rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+            <span style="width: 8px; height: 8px; background: var(--success-color); border-radius: 50%; display: inline-block;"></span>
+            IP скрыт
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <style>
+    @media (min-width: 1024px) {
+      .hero .container {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 1; }
+      100% { transform: scale(1.5); opacity: 0; }
+    }
+  </style>
+  <script>
+    // Микроанимация в Hero
+    setTimeout(() => {
+      const status = document.getElementById('heroStatus');
+      const pulse = document.getElementById('heroPulse');
+      if(status) {
+        let step = 0;
+        const steps = ['Выбор сервера...', 'Подключение...', 'Огонь VPN активен'];
+        const interval = setInterval(() => {
+          if(step < steps.length) {
+            status.innerText = steps[step];
+            if(step === steps.length - 1) {
+              pulse.style.borderColor = 'var(--success-color)';
+            }
+            step++;
+          } else {
+            clearInterval(interval);
+          }
+        }, 1500);
+      }
+    }, 1000);
+  </script>
+</section>

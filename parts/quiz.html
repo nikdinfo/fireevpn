@@ -1,0 +1,104 @@
+<section id="quiz">
+  <div class="container">
+    <h2>Подберите подходящий тариф за 30 секунд</h2>
+    <p class="subtitle">Ответьте на 3 коротких вопроса — и сайт подскажет, какой вариант Огонь VPN лучше выбрать.</p>
+    
+    <div class="glass-card fade-in" style="max-width: 600px; margin: 0 auto; position: relative; overflow: hidden; min-height: 350px;">
+      
+      <!-- Прогресс бар -->
+      <div style="width: 100%; height: 4px; background: rgba(255,255,255,0.1); position: absolute; top: 0; left: 0;">
+        <div id="quizProgress" style="width: 33.33%; height: 100%; background: var(--accent-orange); transition: width 0.3s ease;"></div>
+      </div>
+
+      <!-- Вопрос 1 -->
+      <div id="quizStep1" class="quiz-step active" style="padding-top: 1rem;">
+        <h4 style="text-align: center; margin-bottom: 2rem; color: var(--text-secondary);">Шаг 1 из 3</h4>
+        <h3 style="text-align: center; margin-bottom: 1.5rem;">Для чего вам нужен VPN?</h3>
+        <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+          <button class="btn btn-outline" onclick="nextQuizStep(2)">Видео и стриминг</button>
+          <button class="btn btn-outline" onclick="nextQuizStep(2)">Мессенджеры и звонки</button>
+          <button class="btn btn-outline" onclick="nextQuizStep(2)">Работа и сайты</button>
+          <button class="btn btn-outline" onclick="nextQuizStep(2)">Всё сразу</button>
+        </div>
+      </div>
+
+      <!-- Вопрос 2 -->
+      <div id="quizStep2" class="quiz-step" style="padding-top: 1rem; display: none;">
+        <h4 style="text-align: center; margin-bottom: 2rem; color: var(--text-secondary);">Шаг 2 из 3</h4>
+        <h3 style="text-align: center; margin-bottom: 1.5rem;">На каких устройствах будете использовать?</h3>
+        <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+          <button class="btn btn-outline" onclick="nextQuizStep(3)">Только телефон</button>
+          <button class="btn btn-outline" onclick="nextQuizStep(3)">Только ПК</button>
+          <button class="btn btn-outline" onclick="nextQuizStep(3)">Телефон + ПК</button>
+          <button class="btn btn-outline" onclick="nextQuizStep(3)">Все устройства</button>
+        </div>
+      </div>
+
+      <!-- Вопрос 3 -->
+      <div id="quizStep3" class="quiz-step" style="padding-top: 1rem; display: none;">
+        <h4 style="text-align: center; margin-bottom: 2rem; color: var(--text-secondary);">Шаг 3 из 3</h4>
+        <h3 style="text-align: center; margin-bottom: 1.5rem;">На какой срок хотите подключиться?</h3>
+        <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+          <button class="btn btn-outline" onclick="showQuizResult('trial')">Хочу попробовать</button>
+          <button class="btn btn-outline" onclick="showQuizResult('month')">На 1 месяц</button>
+          <button class="btn btn-outline" onclick="showQuizResult('year')">На год с максимальной выгодой</button>
+        </div>
+      </div>
+
+      <!-- Результат -->
+      <div id="quizResult" class="quiz-step" style="padding-top: 1rem; display: none; text-align: center;">
+        <div style="width: 60px; height: 60px; background: rgba(16, 185, 129, 0.1); color: var(--success-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        </div>
+        <h3 style="margin-bottom: 1rem;">Ваш идеальный тариф:</h3>
+        
+        <div id="resultTrial" style="display: none; margin-bottom: 2rem; padding: 1rem; border-radius: 1rem; background: rgba(255,255,255,0.05);">
+          <h4>Пробный — 10 ₽ / 3 дня</h4>
+          <p style="color: var(--text-secondary); font-size: 0.875rem;">Идеально для теста скорости и стабильности.</p>
+        </div>
+
+        <div id="resultMonth" style="display: none; margin-bottom: 2rem; padding: 1rem; border-radius: 1rem; background: rgba(255,255,255,0.05);">
+          <h4>1 месяц — 349 ₽</h4>
+          <p style="color: var(--text-secondary); font-size: 0.875rem;">Полный доступ без долгих обязательств.</p>
+        </div>
+
+        <div id="resultYear" style="display: none; margin-bottom: 2rem; padding: 1rem; border-radius: 1rem; background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3);">
+          <h4>1 год — 175 ₽/мес (Итого: 2100 ₽)</h4>
+          <p style="color: var(--accent-blue); font-size: 0.875rem; font-weight: 600;">Максимальная выгода!</p>
+        </div>
+
+        <a href="https://tuvp1.ru/5Sg5nF?sub1=fireevpn" class="btn btn-orange" style="width: 100%;">Получить доступ</a>
+        <button onclick="resetQuiz()" style="background: none; border: none; color: var(--text-secondary); margin-top: 1rem; cursor: pointer; text-decoration: underline;">Пройти заново</button>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    function nextQuizStep(step) {
+      document.querySelectorAll('.quiz-step').forEach(el => el.style.display = 'none');
+      document.getElementById('quizStep' + step).style.display = 'block';
+      document.getElementById('quizProgress').style.width = (step * 33.33) + '%';
+    }
+
+    function showQuizResult(type) {
+      document.querySelectorAll('.quiz-step').forEach(el => el.style.display = 'none');
+      document.getElementById('quizResult').style.display = 'block';
+      document.getElementById('quizProgress').style.width = '100%';
+      document.getElementById('quizProgress').style.background = 'var(--success-color)';
+
+      document.getElementById('resultTrial').style.display = 'none';
+      document.getElementById('resultMonth').style.display = 'none';
+      document.getElementById('resultYear').style.display = 'none';
+
+      if (type === 'trial') document.getElementById('resultTrial').style.display = 'block';
+      if (type === 'month') document.getElementById('resultMonth').style.display = 'block';
+      if (type === 'year') document.getElementById('resultYear').style.display = 'block';
+    }
+
+    function resetQuiz() {
+      document.getElementById('quizProgress').style.background = 'var(--accent-orange)';
+      nextQuizStep(1);
+    }
+  </script>
+</section>

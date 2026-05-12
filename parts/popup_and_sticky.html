@@ -1,0 +1,51 @@
+<!-- Sticky Mobile CTA -->
+<div class="sticky-mobile-cta" style="position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(17, 24, 39, 0.95); backdrop-filter: blur(10px); padding: 1rem; border-top: 1px solid var(--glass-border); z-index: 90; text-align: center; display: none;">
+  <a href="https://tuvp1.ru/5Sg5nF?sub1=fireevpn" class="btn btn-orange" style="width: 100%; font-size: 1.125rem;">Попробовать за 10 ₽</a>
+</div>
+
+<!-- Exit-Intent Popup -->
+<div id="exitPopup" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); backdrop-filter: blur(5px); z-index: 9999; display: none; align-items: center; justify-content: center;">
+  <div class="glass-card fade-in" style="max-width: 400px; width: 90%; text-align: center; position: relative; border-color: rgba(249, 115, 22, 0.5);">
+    <button id="closePopup" style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; color: var(--text-secondary); cursor: pointer;">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </button>
+    <div style="font-size: 3rem; margin-bottom: 1rem;">🔥</div>
+    <h3 style="margin-bottom: 1rem;">Не уходите без теста</h3>
+    <p style="color: var(--text-secondary); margin-bottom: 2rem;">Попробуйте Огонь VPN на 3 дня всего за 10 ₽. Оцените скорость и стабильность сами.</p>
+    <a href="https://tuvp1.ru/5Sg5nF?sub1=fireevpn" class="btn btn-orange" style="width: 100%;">Попробовать за 10 ₽</a>
+  </div>
+</div>
+
+<style>
+  @media (max-width: 768px) {
+    .sticky-mobile-cta { display: block; }
+    body { padding-bottom: 80px; /* Чтобы контент не перекрывался кнопкой */ }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Exit intent popup logic
+    let popupShown = false;
+    const popup = document.getElementById('exitPopup');
+    const closeBtn = document.getElementById('closePopup');
+
+    document.addEventListener('mouseout', (e) => {
+      if (e.clientY < 50 && !popupShown) {
+        popup.style.display = 'flex';
+        popupShown = true;
+      }
+    });
+
+    closeBtn.addEventListener('click', () => {
+      popup.style.display = 'none';
+    });
+
+    // Закрытие по клику вне попапа
+    popup.addEventListener('click', (e) => {
+      if (e.target === popup) {
+        popup.style.display = 'none';
+      }
+    });
+  });
+</script>
